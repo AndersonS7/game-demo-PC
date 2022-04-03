@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     public static bool isWall, colliderEnemy;
 
+
     private int contGem;
 
     Player p;
@@ -108,6 +109,10 @@ public class PlayerController : MonoBehaviour
                 EnemyDeadAnimator(obj.transform);
                 Destroy(obj.gameObject);
             }
+        }
+        if (obj.CompareTag("Wall"))
+        {
+            p.RecoverJump(true);
         }
     }
     private void OnTriggerEnter2D(Collider2D coll)

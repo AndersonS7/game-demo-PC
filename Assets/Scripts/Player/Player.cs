@@ -67,14 +67,11 @@ public class Player : MonoBehaviour
     }
     public void Jump()
     {
-        // candela o pulo se bater na parede
-        CollideWallJump();
-
         // verifica se o player está caindo
         CheckFallingDown();
 
         // pulo comum
-        if (isGround() && _totalJump < 1 || isGround(_layerWall) && _totalJump < 1)
+        if (isGround() && _totalJump < 1)
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -83,8 +80,7 @@ public class Player : MonoBehaviour
                 _animator.SetBool("TaPulando", true);
             }
         }// pulo se estiver caindo
-        else if (!isGround() && _totalJump < 1 && _timeFallingDrown < 0.15f
-            || isGround(_layerWall) && _totalJump < 1 && _timeFallingDrown < 0.15f)
+        else if (!isGround() && _totalJump < 1 && _timeFallingDrown < 0.15f)
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -99,6 +95,35 @@ public class Player : MonoBehaviour
 
         // recupera o pulo
         RecoverJump();
+
+        if (_totalJump >= 2 && _rig.velocity.y == 0)
+        {
+            _totalJump = 0;
+        }
+    }
+
+    // quando o player toca na parede por baixo
+    public void RecoverJump(bool obj)
+    {
+        if (obj && _totalJump >= 1)
+        {
+            _totalJump = 0;
+        }
+        if (_rig.velocity.y == 0)
+        {
+            _animator.SetBool("TaPulando", false);
+        }
+    }
+    private void RecoverJump()
+    {
+        if (isGround() && _totalJump >= 1)
+        {
+            _totalJump = 0;
+        }
+        if (_rig.velocity.y == 0)
+        {
+            _animator.SetBool("TaPulando", false);
+        }
     }
     public void Jump(float jumpForce)
     {
@@ -110,17 +135,6 @@ public class Player : MonoBehaviour
             _animator.SetBool("TaPulando", false);
         }
     }
-    private void CollideWallJump()
-    {
-        if (isWall())
-        {
-            _jumpForce = 0;
-        }
-        if (isGround())
-        {
-            _jumpForce = _saveJumpForce;
-        }
-    }
     private void CutJump()
     {
         {
@@ -130,17 +144,6 @@ public class Player : MonoBehaviour
                 _rig.velocity = new Vector2(_rig.velocity.x, _rig.velocity.y * 0.5f);
                 _totalJump++;
             }
-        }
-    }
-    private void RecoverJump()
-    {
-        if (isGround() && _totalJump >= 1 || isGround(_layerWall) && _totalJump >= 1)
-        {
-            _totalJump = 0;
-        }
-        if (_rig.velocity.y == 0)
-        {
-            _animator.SetBool("TaPulando", false);
         }
     }
     private bool isGround()
@@ -174,11 +177,6 @@ public class Player : MonoBehaviour
         {
             _timeFallingDrown = 0;
         }
-
-        //if (isGround())
-        //{
-        //    _timeFallingDrown = 0;
-        //}
     }
     private void Initialize()
     {
