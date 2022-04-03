@@ -1,0 +1,9 @@
+música  = Calimba | Biblioteca de áudios do youtube
+effects = Plasterbrain (effect coin) | Markb258 (effect dead)
+artes   = 
+
+======================================================
+
+effect coin: https://freesound.org/people/plasterbrain/sounds/242857/
+
+effect dead: https://freesound.org/people/markb258/sounds/245807/
