@@ -1,9 +1,10 @@
-música  = Calimba | Biblioteca de áudios do youtube
-effects = Plasterbrain (effect coin) | Markb258 (effect dead)
-artes   = 
+Música  = Calimba | Biblioteca de áudios do youtube
 
-======================================================
+Áudio:
+Som moeda: https://freesound.org/people/plasterbrain/sounds/242857/
+Som inimigo morrendo: https://freesound.org/people/markb258/sounds/245807/
 
-effect coin: https://freesound.org/people/plasterbrain/sounds/242857/
-
-effect dead: https://freesound.org/people/markb258/sounds/245807/
+Artes:
+Free Platform Game: Assetshttps://assetstore.unity.com/packages/2d/environments/free-platform-game-assets-85838
+Sunny Land
+https://assetstore.unity.com/packages/2d/characters/sunny-land-103349
